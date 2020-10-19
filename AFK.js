@@ -197,6 +197,25 @@ function startBot() {
     }, 600000);
   })
 
+  bot.once('spawn', () => {
+    setInterval(() => {
+        const mobFilter = e => e.type === 'mob' && e.position.distanceTo(bot.entity.position) < 8 &&
+							e.mobType !== 'Armor Stand'
+        const mob = bot.nearestEntity(mobFilter)
+
+        if (!mob) return;
+
+        const pos = mob.position;
+        bot.lookAt(pos, true, () => {
+			bot.setControlState('jump', true)
+			setTimeout(() => {
+				bot.attack(mob);
+			}, 500);
+			bot.setControlState('jump', false)
+        });
+    }, 1000);
+  });
+
 
 
   //BLOODHOUND
