@@ -18,6 +18,7 @@ Written in Node.js
  * Online/Cracked mode support.
  * Looks at nearby entities simulating real players.
  * Alerts on low health.
+ * Option to make bot attack mobs inside his range (KillAura) for self-defense, can be disabled.
  * Shows who attacked the bot and the weapon. Thanks to [mineflayer-bloodhound](https://github.com/Nixes/mineflayer-bloodhound).
 
 ## Install
@@ -49,6 +50,7 @@ Written in Node.js
 	Will make the bot stop following you.
 
  3. The bot will start the anti-AFK-kick sequence when connected automatically, it will jump every 10 minutes to prevent kicks.
+ 4. The bot will attack enemy mobs that are inside his range, he can't attack multiple mobs at once, but the option can be disabled.
  
 ## How to Use
 
@@ -62,6 +64,8 @@ Written in Node.js
 	"windows desktop notifications" : You need to choose between "yes" or "no" depending if you want or not Windows Desktop Notifications.
 
 	"owner" : You need to fill this with the username of the player who wants to control the bot, so that the bot doesn't accidentally respond with actions if other players /tell him to do them.
+	
+	"attack mobs" : You need to choose between "yes" or "no" depending if you want or not the bot to attack mobs that are inside his range.
 
 	"username/gmail" : You need to type a username for the bot, write the e-mail in case the account is premium, default is "AFKBot".
 
