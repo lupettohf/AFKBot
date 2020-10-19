@@ -6,19 +6,21 @@ const mineflayerDashboard = require('mineflayer-dashboard');
 var { GoalNear, GoalBlock, GoalXZ, GoalY, GoalInvert, GoalFollow } = require('mineflayer-pathfinder').goals
 var incomingnotification
 
-if (process.argv.length < 6 || process.argv.length > 8) {
+if (process.argv.length < 7 || process.argv.length > 9) {
   console.log('Usage : AFK.js \x1b[31m<host>\x1b[0m')
   console.log('               \x1b[31m<port>\x1b[0m')
   console.log('               \x1b[31m<choose from yes/no if you want or not Windows notifications for commands like /tell or events>\x1b[0m')
   console.log('               \x1b[31m<username of the owner of the bot, so the bot replies only to him>\x1b[0m')
+  console.log('               \x1b[31m<choose from yes/no if you want the bot to attack mobs that are in his range>\x1b[0m')
   console.log('               \x1b[32m[<name, email in case the account is premium>]\x1b[0m')
   console.log('               \x1b[32m[<password, ignore in case the account is cracked>]\x1b[0m')
   console.log('')
   console.log('               \x1b[31mRed\x1b[0m: Needed, \x1b[32mGreen\x1b[0m: Optional')
   console.log('')
-  console.log('               \x1b[36mExample: node AFK.js localhost 25565 no DrMoraschi\x1b[0m (this makes a cracked account bot')
-  console.log('                                                                   that connects to localhost and does\x1b[0m')
-  console.log('                                                                   not send you desktop notifications)\x1b[0m')
+  console.log('               \x1b[36mExample: node AFK.js localhost 25565 no DrMoraschi yes\x1b[0m (this makes a cracked account bot')
+  console.log('                                                                       that connects to localhost and does\x1b[0m')
+  console.log('                                                                       not send you desktop notifications')
+  console.log('                                                                       and will attack mobs in range)\x1b[0m')
   process.exit(1)
 }
 
@@ -28,8 +30,8 @@ function startBot() {
   var bot = mineflayer.createBot({
     host: process.argv[2],
     port: parseInt(process.argv[3]),
-    username: process.argv[6] ? process.argv[6] : 'AFKBot',
-    password: process.argv[7]
+    username: process.argv[7] ? process.argv[7] : 'AFKBot',
+    password: process.argv[8]
   })
 
   //LOAD PLUGIN, FUNCTIONS
@@ -37,6 +39,7 @@ function startBot() {
   
   var incomingnotification = process.argv[4]
   var owner = process.argv[5]
+  var attackmob = process.argv[6]
 
   bot.on('login', function() {
     bot.loadPlugin(require('mineflayer-dashboard'))
@@ -198,22 +201,24 @@ function startBot() {
   })
 
   bot.once('spawn', () => {
-    setInterval(() => {
-        const mobFilter = e => e.type === 'mob' && e.position.distanceTo(bot.entity.position) < 8 &&
-							e.mobType !== 'Armor Stand'
-        const mob = bot.nearestEntity(mobFilter)
+    if (attackmob === 'yes' ) {
+      setInterval(() => {
+          const mobFilter = e => e.type === 'mob' && e.position.distanceTo(bot.entity.position) < 8 &&
+                e.mobType !== 'Armor Stand'
+          const mob = bot.nearestEntity(mobFilter)
 
-        if (!mob) return;
+          if (!mob) return;
 
-        const pos = mob.position;
-        bot.lookAt(pos, true, () => {
-			bot.setControlState('jump', true)
-			setTimeout(() => {
-				bot.attack(mob);
-			}, 500);
-			bot.setControlState('jump', false)
-        });
-    }, 1000);
+          const pos = mob.position;
+          bot.lookAt(pos, true, () => {
+        bot.setControlState('jump', true)
+        setTimeout(() => {
+          bot.attack(mob);
+        }, 500);
+        bot.setControlState('jump', false)
+          });
+      }, 1000);
+  }
   });
 
 
