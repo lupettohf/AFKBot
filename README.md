@@ -9,7 +9,7 @@ Written in Node.js
 
 ## Features
 
- * Supports 1.16.1.
+ * Supports 1.16.4.
  * An easy-to-use GUI with incorporated chat thanks to [mineflayer-dashboard](https://github.com/wvffle/mineflayer-dashboard).
  * Windows Desktop Notifications for events like /tell or on death. These can be disabled when starting the bot. Thanks to [node-notifier](https://github.com/mikaelbr/node-notifier).
  * Automatic response (whispered) like "Sorry, I am an AFK Bot", to people who "/tell" you.
@@ -73,7 +73,7 @@ Written in Node.js
 
 	Example:
 	
-	```node AFK.js localhost 25565 yes ImTheOwner mygmailcool@gmail.com mypasswordis1234```
+	```node AFK.js localhost 25565 yes ImTheOwner no mygmailcool@gmail.com mypasswordis1234```
 
  3. Once you've written all, hit ENTER and watch as the GUI starts and the bot connects to the server.
 
