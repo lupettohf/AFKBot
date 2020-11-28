@@ -15,7 +15,7 @@ Written in Node.js
  * Windows Desktop Notifications for events like /tell or on death. These can be disabled when starting the bot. Thanks to [node-notifier](https://github.com/mikaelbr/node-notifier).
  * Automatic response (whispered) like "Sorry, I am an AFK Bot", to people who "/tell" you.
  * Pathfinding ability to make your AFK bot follow you from one place to another, thanks to [mineflayer-pathfinder](https://github.com/Karang/mineflayer-pathfinder).
- * Reconnect ability in case it's kicked form the server.
+ * Reconnect ability in case it's kicked from the server.
  * Online/Cracked mode support.
  * Looks at nearby entities simulating real players.
  * Alerts on low health.
