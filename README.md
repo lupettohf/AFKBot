@@ -13,6 +13,7 @@ Written in Node.js
  * Supports 1.16.X.
  * An easy-to-use GUI with incorporated chat thanks to [mineflayer-dashboard](https://github.com/wvffle/mineflayer-dashboard).
  * Windows Desktop Notifications for events like /tell or on death. These can be disabled inside config.json. Thanks to [node-notifier](https://github.com/mikaelbr/node-notifier).
+ * Discord WebHook Notifications for some events. Can be configured in config.json. Thanks to [discord.js](https://github.com/discordjs/discord.js).
  * Automatic response (whispered) like "Sorry, I am an AFK Bot", to people who "/tell" you.
  * Pathfinding ability to make your AFK bot follow you from one place to another, thanks to [mineflayer-pathfinder](https://github.com/Karang/mineflayer-pathfinder).
  * Reconnect ability in case it's kicked from the server.
