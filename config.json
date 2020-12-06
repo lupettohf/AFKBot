@@ -1,0 +1,13 @@
+{
+    "username": "AFKBot",
+    "password": null,
+    "host": "localhost",
+    "port": 25565,
+    "windowsAnnouncements": "true",
+    "owner": "DrMoraschi",
+    "attackMobs": "true",
+    "webhook": {
+        "sendMessage": "true",
+        "webhookUrl":"https://discord.com/api/webhooks/785111597815300167/nBvD1t8CCss44skWcZ9gzKB4YiuXs6Hf2FPBUtwEZpC65QPCZQt81mQaHKjDk6lqW55J"
+    }
+}

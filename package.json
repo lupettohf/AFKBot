@@ -2,8 +2,9 @@
   "name": "afkbot",
   "version": "1.0.0",
   "description": "AFK bot for Minecraft",
-  "main": "AFK.js",
+  "main": "index.js",
   "dependencies": {
+    "discord.js": "^12.5.1",
     "mineflayer": "^2.29.1",
     "mineflayer-bloodhound": "^0.0.1",
     "mineflayer-dashboard": "^1.0.0",
@@ -12,7 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "ECHO Success"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,5 @@
   "bugs": {
     "url": "https://github.com/DrMoraschi/AFKBot/issues"
   },
-  "homepage": "https://github.com/DrMoraschi/AFKBot#readme"
+  "homepage": "https://github.com/DrMoraschi/AFKBot"
 }
