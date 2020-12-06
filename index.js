@@ -39,6 +39,11 @@ function startBot() {
     bot.loadPlugin(require('mineflayer-dashboard'))
   })
 
+  bot.on('spawn', () => {
+    var playersList = Object.keys(bot.players).join(", ")
+    bot.dashboard.log(`\x1b[36m<WORLD> Online players: ${playersList}`)
+    hook.send(`**Online players: ${playersList}**`)
+  })
 
 
   //LOOKING
