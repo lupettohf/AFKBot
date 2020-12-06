@@ -10,16 +10,16 @@ Written in Node.js
 
 ## Features
 
- * Supports 1.16.4.
+ * Supports 1.16.X.
  * An easy-to-use GUI with incorporated chat thanks to [mineflayer-dashboard](https://github.com/wvffle/mineflayer-dashboard).
- * Windows Desktop Notifications for events like /tell or on death. These can be disabled when starting the bot. Thanks to [node-notifier](https://github.com/mikaelbr/node-notifier).
+ * Windows Desktop Notifications for events like /tell or on death. These can be disabled inside config.json. Thanks to [node-notifier](https://github.com/mikaelbr/node-notifier).
  * Automatic response (whispered) like "Sorry, I am an AFK Bot", to people who "/tell" you.
  * Pathfinding ability to make your AFK bot follow you from one place to another, thanks to [mineflayer-pathfinder](https://github.com/Karang/mineflayer-pathfinder).
  * Reconnect ability in case it's kicked from the server.
  * Online/Cracked mode support.
  * Looks at nearby entities simulating real players.
  * Alerts on low health.
- * Option to make bot attack mobs inside his range (KillAura) for self-defense, can be disabled.
+ * Option to make bot attack mobs inside his range (KillAura) for self-defense, can be disabled in config.json.
  * Shows who attacked the bot and the weapon. Thanks to [mineflayer-bloodhound](https://github.com/Nixes/mineflayer-bloodhound).
 
 ## Install
@@ -55,26 +55,21 @@ Written in Node.js
  
 ## How to Use
 
- 1. In your Command Line, repeat number 4 from "Install"; navigate to the folder where the files are located.
- 2. There are 4 arguments that are needed, and other 2 that are optional:
-
-	"host" : This is the IP or the subdomain of the server.
-
-	"port" : This is the port of the server.
-
-	"windows desktop notifications" : You need to choose between "yes" or "no" depending if you want or not Windows Desktop Notifications.
-
-	"owner" : You need to fill this with the username of the player who wants to control the bot, so that the bot doesn't accidentally respond with actions if other players /tell him to do them.
+ 1. Before starting the bot, please take a look at config.json, the options are:
+ 	"username": A name for the bot, if the server has offline-mode set to true, it's the e-mail.
+	"password": Password of the account, if the server has offline-mode set to false, you can leave it as null.
+	"host": IP of the server.
+	"port": Port of the server. 25565 by default.
+	"windowsAnnouncements": true/false. Receive notifications from Windows if something happens to the bot.
+	"owner": Minecraft Username of the owner of the bot, so that the bot only replies to him.
+	"attackMobs": true/false. Wether to attack mobs that are in range(KillAura).
+	"webhook": settings for the Discord Webhook.
+		"sendMessage": true/false. Print chat in a channel with a webhook and receive notifications if something happens to the bot.
+		"webhookUrl": URL of the webhook.
+ 2. In your Command Line, repeat number 4 from "Install"; navigate to the folder where the files are located.
+ 3. To start the bot, just type in:
 	
-	"attack mobs" : You need to choose between "yes" or "no" depending if you want or not the bot to attack mobs that are inside his range.
-
-	"username/gmail" : You need to type a username for the bot, write the e-mail in case the account is premium, default is "AFKBot".
-
-	"password" : Ignore if the account is cracked, only for premium accounts.
-
-	Example:
-	
-	```node AFK.js localhost 25565 yes ImTheOwner no mygmailcool@gmail.com mypasswordis1234```
+	```node index.js```
 
  3. Once you've written all, hit ENTER and watch as the GUI starts and the bot connects to the server.
 
