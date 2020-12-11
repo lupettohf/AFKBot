@@ -10,7 +10,7 @@ Written in Node.js
 
 ## Features
 
- * Supports 1.16.X.
+ * Supports up to 1.16.3.
  * An easy-to-use GUI with incorporated chat thanks to [mineflayer-dashboard](https://github.com/wvffle/mineflayer-dashboard).
  * Windows Desktop Notifications for events like /tell or on death. These can be disabled inside config.json. Thanks to [node-notifier](https://github.com/mikaelbr/node-notifier).
  * Discord WebHook Notifications for some events. Can be configured in config.json. Thanks to [discord.js](https://github.com/discordjs/discord.js).
@@ -67,6 +67,7 @@ Written in Node.js
 	"webhook": settings for the Discord Webhook.
 		"sendMessage": true/false. Print chat in a channel with a webhook and receive notifications if something happens to the bot.
 		"webhookUrl": URL of the webhook.
+		"userIDToPing: ID so that the webhook pings you on Discord when something happens. WARNING: It's the ID of the user, not the USERNAME. You need to enable Developer Mode to get an ID of a user.
  2. In your Command Line, repeat number 4 from "Install"; navigate to the folder where the files are located.
  3. To start the bot, just type in:
 	
