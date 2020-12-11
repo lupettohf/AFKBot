@@ -57,17 +57,17 @@ Written in Node.js
 ## How to Use
 
  1. Before starting the bot, please take a look at config.json, the options are:
- 	"username": A name for the bot, if the server has offline-mode set to true, it's the e-mail.
-	"password": Password of the account, if the server has offline-mode set to false, you can leave it as null.
-	"host": IP of the server.
-	"port": Port of the server. 25565 by default.
-	"windowsAnnouncements": true/false. Receive notifications from Windows if something happens to the bot.
-	"owner": Minecraft Username of the owner of the bot, so that the bot only replies to him.
-	"attackMobs": true/false. Wether to attack mobs that are in range(KillAura).
-	"webhook": settings for the Discord Webhook.
-		"sendMessage": true/false. Print chat in a channel with a webhook and receive notifications if something happens to the bot.
-		"webhookUrl": URL of the webhook.
-		"userIDToPing: ID so that the webhook pings you on Discord when something happens. WARNING: It's the ID of the user, not the USERNAME. You need to enable Developer Mode to get an ID of a user.
+ 	* "username": A name for the bot, if the server has offline-mode set to true, it's the e-mail.
+	* "password": Password of the account, if the server has offline-mode set to false, you can leave it as null.
+	* "host": IP of the server.
+	* "port": Port of the server. 25565 by default.
+	* "windowsAnnouncements": true/false. Receive notifications from Windows if something happens to the bot.
+	* "owner": Minecraft Username of the owner of the bot, so that the bot only replies to him.
+	* "attackMobs": true/false. Wether to attack mobs that are in range(KillAura).
+	* "webhook": settings for the Discord Webhook.
+		* "sendMessage": true/false. Print chat in a channel with a webhook and receive notifications if something happens to the bot.
+		* "webhookUrl": URL of the webhook.
+		* "userIDToPing: ID so that the webhook pings you on Discord when something happens. WARNING: It's the ID of the user, not the USERNAME. You need to enable Developer Mode to get an ID of a user.
  2. In your Command Line, repeat number 4 from "Install"; navigate to the folder where the files are located.
  3. To start the bot, just type in:
 	
