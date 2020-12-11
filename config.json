@@ -8,6 +8,7 @@
     "attackMobs": "true",
     "webhook": {
         "sendMessage": "true",
-        "webhookUrl":""
+        "webhookUrl":"",
+        "userIDToPing":""
     }
 }

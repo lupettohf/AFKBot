@@ -9,12 +9,15 @@ var dsURL = botConfig.webhook.webhookUrl.split('/')
 
 if (botConfig.webhook.sendMessage === 'true') {
   if (botConfig.webhook.webhookUrl === '') {
-    console.log('\n   \x1b[36m<DISCORD> Please specify a Discord WebHook Url\x1b[0m')
+    console.log('\n   \x1b[34m<DISCORD> Please specify a Discord WebHook Url\x1b[0m')
     process.exit(1)
+  } else if (botConfig.webhook.userIDToPing === '') {
+    console.log('\n   \x1b[34m<DISCORD> Please specify a user ID to ping\x1b[0m')
+    process.exit(1)
+  } else {
+    global.hook = new Discord.WebhookClient(dsURL[5], dsURL[6])
   }
 }
-
-const hook = new Discord.WebhookClient(dsURL[5], dsURL[6]);
 
 startBot()
 
@@ -39,10 +42,13 @@ function startBot() {
     bot.loadPlugin(require('mineflayer-dashboard'))
   })
 
-  bot.on('spawn', () => {
+  bot.once('spawn', () => {
     var playersList = Object.keys(bot.players).join(", ")
     bot.dashboard.log(`\x1b[36m<WORLD> Online players: ${playersList}`)
-    hook.send(`**Online players: ${playersList}**`)
+    if (sendToDS === 'true') {
+      bot.dashboard.log(`\x1b[34m<DISCORD> Webhook found`+'\x1b[0m')
+      hook.send(`**Online players: ${playersList}**`)
+    }
   })
 
 
@@ -109,7 +115,7 @@ function startBot() {
   //KICK & ERRORS
   bot.on('kicked', (reason) => {
     reason = JSON.parse(reason)
-    bot.dashboard.log('\x1b[32m<STATUS>\x1b[0m \x1b[31mI got kicked. Reason: '+reason.extra[0].text+'\x1b[0m')
+    bot.dashboard.log('\x1b[32m<STATUS>\x1b[0m \x1b[31mI got kicked.\x1b[0m')
     if (incomingnotification === 'true') {
       notifier.notify({
         title: 'Event Message',
@@ -119,18 +125,20 @@ function startBot() {
     }
 
     if (sendToDS === 'true') {
-      hook.send(`**I got kicked! Reason: ${reason.extra[0].text}**`)
+      hook.send(`<@${botConfig.webhook.userIDToPing}> **I got kicked!**`)
     }
 
     setTimeout(() => {
       startBot()
     }, 10000)
 
+    if (!reason.extra) return
+
     if (reason.extra[0].text.includes('banned') === true) {
       bot.dashboard.log('\x1b[32m<STATUS>\x1b[0m \x1b[31mI got banned. Exiting in 10 seconds...')
 
       if (sendToDS === 'true') {
-        hook.send('**I got banned! Exiting in 10 seconds...**')
+        hook.send(`<@${botConfig.webhook.userIDToPing}> **I got banned! Exiting in 10 seconds...**`)
       }
       setTimeout(() => {
         process.exit(1)
@@ -152,13 +160,12 @@ function startBot() {
     }
 
     if (sendToDS === 'true') {
-      hook.send('**I died!**')
+      hook.send(`<@${botConfig.webhook.userIDToPing}> **I died!**`)
     }
   })
 
   bot.once('spawn', () => {
     bot.dashboard.log(`\x1b[32m<STATUS> Spawned at X: ${Math.floor(bot.entity.position.x)} Y: ${Math.floor(bot.entity.position.y)} Z: ${Math.floor(bot.entity.position.z)}`+'\x1b[0m')
-    bot.dashboard.log(`\x1b[36m<DISCORD> Webhook found`+'\x1b[0m')
   })
 
   bot.on('respawn', () => {
@@ -181,7 +188,7 @@ function startBot() {
   //WORLD
   bot.once('time', () => {
     setTimeout(function() {
-    bot.dashboard.log(`\x1b[36m<WORLD> \x1b[36mCurrent time: `+bot.time.timeOfDay+'\x1b[0m')
+    bot.dashboard.log(`\x1b[36m<WORLD> \x1b[36mCurrent time: `+Math.abs(bot.time.timeOfDay)+'\x1b[0m')
   }, 1000)})
 
 
@@ -212,7 +219,7 @@ function startBot() {
 
 
   //AFK
-  bot.on('spawn', () => {
+  bot.once('spawn', () => {
     bot.dashboard.log('\x1b[32m<STATUS> Starting anti-AFK-kick sequence'+'\x1b[0m')
     setInterval(() => {
       setTimeout(() => {
