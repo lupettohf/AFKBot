@@ -57,7 +57,7 @@ Written in Node.js
 ## How to Use
 
  1. Before starting the bot, please take a look at config.json, the options are:
- 	* "username": A name for the bot, if the server has offline-mode set to true, it's the e-mail.
+ 	* "username": A name for the bot, if the server has online-mode set to true, it's the e-mail.
 	* "password": Password of the account, if the server has offline-mode set to false, you can leave it as null.
 	* "host": IP of the server.
 	* "port": Port of the server. 25565 by default.
