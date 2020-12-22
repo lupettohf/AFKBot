@@ -9,7 +9,7 @@
     "mineflayer-bloodhound": "^0.0.1",
     "mineflayer-dashboard": "^1.0.0",
     "mineflayer-pathfinder": "^1.0.10",
-    "node-notifier": "^8.0.0"
+    "node-notifier": "^8.0.1"
   },
   "devDependencies": {},
   "scripts": {
