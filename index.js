@@ -1,6 +1,7 @@
 var mineflayer = require('mineflayer')
 var notifier = require('node-notifier');
 var bloodhoundPlugin = require('mineflayer-bloodhound')(mineflayer);
+var autoeatPlugin = require("mineflayer-auto-eat")
 var { pathfinder, Movements } = require('mineflayer-pathfinder');
 var { GoalFollow } = require('mineflayer-pathfinder').goals
 var botConfig = require('./config.json')
@@ -32,7 +33,7 @@ function startBot() {
 
   //LOAD PLUGIN, FUNCTIONS
   bot.loadPlugin(pathfinder)
-  
+  bot.loadPlugin(autoeatPlugin)
   var incomingnotification = botConfig.windowsAnnouncements
   var owner = botConfig.owner
   var attackmob = botConfig.attackMobs
@@ -48,6 +49,12 @@ function startBot() {
     if (sendToDS === 'true') {
       bot.dashboard.log(`\x1b[34m<DISCORD> Webhook found`+'\x1b[0m')
       hook.send(`**Online players: ${playersList}**`)
+    }
+    // Setup Autoeat
+    bot.autoEat.options = {
+	priority: "foodPoints", 
+	startAt: 14,
+	bannedFood: [],
     }
   })
 
@@ -175,6 +182,12 @@ function startBot() {
   bot.on('login', () => {
     bot.dashboard.log('\x1b[32m<STATUS> Logged in'+'\x1b[0m')
   })
+
+  bot.on("health", () => {
+  	if (bot.food === 20) bot.autoEat.disable()
+  	// Disable the plugin if the bot is at 20 food points
+  	else bot.autoEat.enable() // Else enable the plugin again
+  }) 
 
   bot.once('health', () => {
     bot.dashboard.log(`\x1b[32m<STATUS> I have ${Math.floor(bot.health)} health.`+'\x1b[0m')
